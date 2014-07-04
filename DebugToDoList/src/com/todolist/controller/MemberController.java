@@ -29,6 +29,19 @@ public class MemberController {
 	@Autowired
 	PerformanceService performanceService;
 
+	@RequestMapping(value="showMembers")
+	public ModelAndView showMembers(){
+		ModelAndView model = new ModelAndView();
+		model.addObject("allMembers",memberService.getMembersPaging(0, 10));
+
+		model.setViewName("viewMembers");
+		return model;
+	}
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/viewAddMember", method = RequestMethod.GET)
 	public ModelAndView viewAddMember() {
 		ModelAndView model = new ModelAndView();
@@ -71,7 +84,7 @@ member.setStatus(UserStatus.ACTIVE);
 			String image;
 			try {
 				image = Base64
-						.encodeBase64URLSafeString(member.getImage()
+						.encodeBase64String(member.getImage()
 								.getBytes(
 										1,
 										new Long(member.getImage().length())

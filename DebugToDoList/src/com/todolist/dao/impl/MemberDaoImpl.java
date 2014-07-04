@@ -51,13 +51,23 @@ public class MemberDaoImpl implements MemberDao {
 	@Transactional(readOnly = true )
 	@SuppressWarnings("unchecked")
 	public List<Member> getAllMembers() {
-		
-		return (List<Member>)sessionFactory.getCurrentSession().createCriteria(Member.class).list();	}
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Member.class);
+		return (List<Member>)criteria.list();	}
 
 	@Transactional(readOnly = true)
 	public Member getMember(Long memberId) {
 		
 		return (Member) sessionFactory.getCurrentSession().get(Member.class, memberId);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly=true)
+	public List<Member> getMembersPaging(int start,int end) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Member.class);
+		criteria.setFirstResult(start);
+		criteria.setMaxResults(end);
+		
+		return (List<Member>)criteria.list();
 	}
 
 }

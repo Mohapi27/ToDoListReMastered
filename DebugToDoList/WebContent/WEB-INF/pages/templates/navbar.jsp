@@ -19,7 +19,7 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Manage Group<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="viewMembers.html">View Members</a></li>
+								<li><a href="showMembers.html">View Members</a></li>
 								<li><a href="sendMessage.html">Send Message To Member</a></li>
 								<li class="divider"></li>
 								<li><a href="viewAddMember.html">Add Member</a></li>

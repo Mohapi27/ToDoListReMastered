@@ -47,4 +47,9 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.getMember(memberId);
 	}
+
+	@Override
+	public List<Member> getMembersPaging(int start, int end) {
+		return memberDao.getMembersPaging(start, end);
+	}
 }

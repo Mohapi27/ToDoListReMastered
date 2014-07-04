@@ -10,5 +10,6 @@ public interface MemberService {
 	Long updateMember(Member member);
 	Member findMemberByName(String username);
 	List<Member> getAllMembers();
+	List<Member> getMembersPaging(int start, int end);
 	Member getMember(Long memberId);
 }
