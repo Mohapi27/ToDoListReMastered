@@ -59,9 +59,15 @@ member.setStatus(UserStatus.ACTIVE);
 
 		Member member = memberService.findMemberByName(loggedUsername);
 		Performance performance = performanceService.getPerformance(member.getMemberId());
-model.addObject("date", Calendar.getInstance().getTime());
-if (member != null) {
+        model.addObject("date", Calendar.getInstance().getTime());
+        if (member != null) {
 			model.addObject("memberProfile", member);
+		}
+		if (performance != null) {
+			model.addObject("memberPerformance", performance);
+		}
+		if(member.getImage() != null)
+		{
 			String image;
 			try {
 				image = Base64
@@ -75,10 +81,6 @@ if (member != null) {
 			} catch (SQLException  | NullPointerException e) {
 				e.printStackTrace();
 			}
-
-		}
-		if (performance != null) {
-			model.addObject("memberPerformance", performance);
 		}
 		model.setViewName("ProfileDisplay");
 		return model;

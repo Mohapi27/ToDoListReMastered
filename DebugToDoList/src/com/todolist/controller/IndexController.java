@@ -11,7 +11,7 @@ import com.todolist.model.Member;
 @Controller
 public class IndexController {
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method ={ RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView login(
 		@RequestParam(value = "error", required = false) String error,
 		@RequestParam(value = "logout", required = false) String logout) {

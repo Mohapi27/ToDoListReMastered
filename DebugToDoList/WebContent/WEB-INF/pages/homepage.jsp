@@ -28,9 +28,16 @@
 
 	</div>
 	<div class="row">
-	<div id=gauge class="col-md-5 col-md-offset-4"></div>
+	<div id=gauge class="col-md-3 col-md-offset-4"></div>
 	</div>
-	<div>
+	<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+	<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Top 5 Performers</h3>
+  </div>
+ 
+   
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
@@ -62,6 +69,10 @@
 
 		</table>
 	</div>
+	</div>
+</div>
+
+	
 </body>
 <c:import url="templates/javascripts.jsp"></c:import>
 <script type="text/javascript" src="<c:url value='/resources/javascript/raphael.2.1.0.min.js' />"></script>
