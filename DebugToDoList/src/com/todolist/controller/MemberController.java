@@ -54,11 +54,11 @@ member.setStatus(UserStatus.ACTIVE);
 
 		ModelAndView model = new ModelAndView();
 
-		/*String loggedUsername = SecurityContextHolder.getContext()
+		String loggedUsername = SecurityContextHolder.getContext()
 				.getAuthentication().getName();
-*/
-		Member member = memberService.findMemberByName("Waseem24");
-		//Performance performance = performanceService.getPerformance(member.getMemberId());
+
+		Member member = memberService.findMemberByName(loggedUsername);
+		Performance performance = performanceService.getPerformance(member.getMemberId());
 model.addObject("date", Calendar.getInstance().getTime());
 if (member != null) {
 			model.addObject("memberProfile", member);
@@ -77,9 +77,9 @@ if (member != null) {
 			}
 
 		}
-	/*	if (performance != null) {
+		if (performance != null) {
 			model.addObject("memberPerformance", performance);
-		}*/
+		}
 		model.setViewName("ProfileDisplay");
 		return model;
 	}

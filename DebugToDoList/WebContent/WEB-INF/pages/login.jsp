@@ -16,7 +16,7 @@
 			<div class="row">
 				<div
 					class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-6 col-md-offset-0">
-					<c:url value="/login" var="loginUrl" />
+					<c:url value="/login.html" var="loginUrl" />
 					<form action="${loginUrl}" method="post" role="form"
 						class="form-signin">
 						<fieldset>

@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.todolist.dao.MemberDao;
-import com.todolist.dao.RoleDao;
 import com.todolist.model.Member;
 import com.todolist.model.Role;
 import com.todolist.model.UserStatus;
