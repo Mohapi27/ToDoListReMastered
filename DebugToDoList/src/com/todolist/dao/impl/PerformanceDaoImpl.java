@@ -7,6 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,8 @@ import com.todolist.model.Group;
 import com.todolist.model.Member;
 import com.todolist.model.Performance;
 import com.todolist.model.Task;
+import com.todolist.service.GroupService;
+import com.todolist.service.MemberService;
 
 @Repository("performanceDao")
 @Transactional(propagation = Propagation.SUPPORTS)
@@ -65,14 +68,14 @@ public class PerformanceDaoImpl implements PerformanceDao
 	}
 
 	@Transactional(readOnly = true)
-//	@Scheduled(fixedRate=300000)// this method will be invoked after every 5 min to perform calculations & update relevant table
+	@Scheduled(fixedRate=3000 )//cron="*/5 * * * * MON-FRI*" this method will be invoked after every 5 min to perform calculations & update relevant table
 	@Override
 	public void calcMemberPerformance() 
 	{
 		List<Member> allMembers = memberDao.getAllMembers();
 		int notDoneTasks =0;
 		int taskDone = 0;
-		double performance = 0.0;
+		//double performance = 0.0;
 		
 		
 		for(Member member: allMembers)
@@ -80,22 +83,19 @@ public class PerformanceDaoImpl implements PerformanceDao
 			
 			taskDone = calcDoneTasks(member.getMemberId());
 			notDoneTasks = calcNotDoneTasks(member.getMemberId());
-			
 			Performance memberPerformance = getPerformance(member.getMemberId());
 			
-			performance = ((double)(taskDone/(memberPerformance.getNoOfTasks()))*100);
+			double performance = ((double)taskDone/memberPerformance.getNoOfTasks())*100;
+			
 			performance = Double.parseDouble(new DecimalFormat("###.##").format(performance));
 			
 			memberPerformance.setCompletedTasks(taskDone);
-			memberPerformance.setNotCompletedTasks(notDoneTasks);
 			memberPerformance.setPercentageCompletedTask(performance);
 			
-			@SuppressWarnings("unused")
-			Long updateMemberPerformance= updatePerformance(memberPerformance);
+			//invoke performanceUpdat Method here...
 		}
 
 	}
-	@SuppressWarnings("unused")
 	@Override
 	public void calcGroupPerformance() 
 	{	
@@ -173,12 +173,10 @@ public class PerformanceDaoImpl implements PerformanceDao
 	}
 
 	@SuppressWarnings("unchecked")
-	@Transactional(readOnly = true)
+	@Transactional(readOnly=true)
 	public List<Performance> getTopFivePerformers() {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Performance.class);
 		criteria.addOrder(Order.asc("percentageCompletedTask"));
-		criteria.setMaxResults(5);
-		criteria.setFirstResult(0);
 		return (List<Performance>)criteria.list();
 	} 
 }

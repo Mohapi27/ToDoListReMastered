@@ -38,10 +38,6 @@ public class Performance implements Serializable{
 	private int completedTasks;
 		
 	@NotNull
-	@Column(name="tblPerformance_NotCompleted")
-	private int notCompletedTasks;
-		
-	@NotNull
 	@Column(name="tblPerformance_ToBeCompleted")
 	private int tasksToBeCompleted;
 	
@@ -49,11 +45,6 @@ public class Performance implements Serializable{
 	@NotNull
 	@Column(name="tblPerformance_PercentageCompletedTask")
 	private double percentageCompletedTask;
-		
-	@DecimalMin(value ="0.00")
-	@NotNull
-	@Column(name="tblPerformance_PercentageNotCompleted")
-	private double percentageNotCompleted;
 		
 	@DecimalMin(value ="0.00")	
 	@NotNull
@@ -104,14 +95,6 @@ public class Performance implements Serializable{
 		this.completedTasks = completedTasks;
 	}
 
-	public int getNotCompletedTasks() {
-		return notCompletedTasks;
-	}
-
-	public void setNotCompletedTasks(int notCompletedTasks) {
-		this.notCompletedTasks = notCompletedTasks;
-	}
-
 	public int getTasksToBeCompleted() {
 		return tasksToBeCompleted;
 	}
@@ -131,15 +114,6 @@ public class Performance implements Serializable{
 	public void setPercentageCompletedTask(double percentageCompletedTask) {
 		this.percentageCompletedTask = percentageCompletedTask;
 	}
-
-	public double getPercentageNotCompleted() {
-		return percentageNotCompleted;
-	}
-
-	public void setPercentageNotCompleted(double percentageNotCompleted) {
-		this.percentageNotCompleted = percentageNotCompleted;
-	}
-
 	
 	
 	

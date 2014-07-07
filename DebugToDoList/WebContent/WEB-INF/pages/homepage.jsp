@@ -44,10 +44,8 @@
 					<th>Member</th>
 					<th># of Tasks</th>
 					<th># of Completed Tasks</th>
-					<th># of Tasks Not Completed</th>
 					<th># of Tasks To Be Completed</th>
 					<th>% of Completed Tasks</th>
-					<th>% Not Completed</th>
 					<th>Group Performance</th>
 				</tr>
 			</thead>
@@ -58,10 +56,8 @@
 					<td>${tpm.member.name}</td>
 					<td>${tpm.noOfTasks}</td>
 					<td>${tpm.completedTasks}</td>
-					<td>${tpm.notCompletedTasks}</td>
 					<td>${tpm.tasksToBeCompleted}</td>
 					<td>${tpm.percentageCompletedTask}</td>
-					<td>${tpm.percentageNotCompleted}</td>
 					<td>${tpm.groupPerformance}</td>
 				</tr>
 				</c:forEach>
@@ -71,7 +67,7 @@
 	</div>
 	</div>
 </div>
-
+<input type="hidden" value="${performance.classPerformance}" id="p">
 	
 </body>
 <c:import url="templates/javascripts.jsp"></c:import>
@@ -83,9 +79,11 @@ $(document).ready(function(){
          window.document.location = $(this).data("url");
    });
 	 
+	 
+	 var performance = $("#p").val();
 	 var gauge = new JustGage({
          id: "gauge", 
-         value: getRandomInt(0, 100), 
+         value: performance, 
          min: 0,
          max: 100,
          title: "Class Performance",

@@ -39,6 +39,7 @@
 									value="Sign In">
 							</div>
 						</div>
+						<br>
 					</fieldset>
 					<c:if test="${not empty error}">
 						<div class="alert alert-danger">${error}</div>
