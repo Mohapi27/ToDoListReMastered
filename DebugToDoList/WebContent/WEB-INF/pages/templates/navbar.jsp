@@ -9,7 +9,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-home"></span> Home</a>
+					<a class="navbar-brand" href='<c:url value="index.html"/>' ><span class="glyphicon glyphicon-home"></span> Home</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -19,16 +19,15 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Manage Group<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="showMembers.html">View Members</a></li>
-								<li><a href="sendMessage.html">Send Message To Member</a></li>
+								<li><a href='<c:url value="showMembers.html"/>'>View Members</a></li>
+								<li><a href='<c:url value="sendMessage.html"/>'>Send Message To Member</a></li>
 								<li class="divider"></li>
-								<li><a href="viewAddMember.html">Add Member</a></li>
 								<li><a href="#">Remove Member</a></li>
 							</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"><span class="glyphicon glyphicon-tasks"></span> Manage Tasks <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="addTask.html"><span class="glyphicon glyphicon-plus"></span> Add Task</a></li>
+								<li><a href='<c:url value="addTask.html"/>' ><span class="glyphicon glyphicon-plus"></span> Add Task</a></li>
 								<li class="divider"></li>
 								<li><a href="#"><span class="glyphicon glyphicon-th-list"></span> View Tasks</a></li>
 								<li><a href="#"><span class="glyphicon glyphicon-ok"></span> View Completed Tasks</a></li>
@@ -41,15 +40,17 @@
 						<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
+					<security:authorize access="isAnonymous()">
 						<li><a href='<c:url value="/login.html"></c:url>' ><span class="glyphicon glyphicon-pencil"></span> Sign in</a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Profile<b class="caret"></b></a>
-							<ul class="dropdown-menu">
+						<li><p class="navbar-text">or</p></li>
+						<li><a href='<c:url value="signUpNow.html"/>'>Sign Up</a></li>
+						</security:authorize>
+						<security:authorize access="hasRole('ROLE_LEAD_PROGRAMMER') or hasRole('ROLE_GROUP_LEADER') or hasRole('ROLE_PROGRAMMER')">
+						<li><p class="navbar-text">Signed in as: <a href="showProfile.html" class="navbar-link"><security:authentication property="name"/></a></p></li>
+						<li><a href='<c:url value="/logout"></c:url>' ><span class="glyphicon glyphicon-off"></span> Log Out</a></li>
+						</security:authorize>
+					
 							
-								<li><a href="showProfile.html" ><span class="glyphicon glyphicon-user"></span> View Profile</a></li>
-								<li class="divider"></li>
-								<li><a href='<c:url value="/logout"></c:url>' ><span class="glyphicon glyphicon-off"></span> Log Out</a></li>
-							</ul></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->

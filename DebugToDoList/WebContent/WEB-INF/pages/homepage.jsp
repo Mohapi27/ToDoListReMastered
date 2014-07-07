@@ -54,7 +54,7 @@
 
 			<tbody>
 			<c:forEach items="${topFive}" var="tpm">
-				<tr class="clickable_row" data-url="/showProfile/${tmp.member.name}">
+				<tr class="clickable_row" data-url = "showUserProfile.html?user=${tpm.member.username}">
 					<td>${tpm.member.name}</td>
 					<td>${tpm.noOfTasks}</td>
 					<td>${tpm.completedTasks}</td>
@@ -80,7 +80,7 @@
 <script>
 $(document).ready(function(){
 	 $(".clickable_row").click(function() {
-         window.document.location = $(this).data('url');
+         window.document.location = $(this).data("url");
    });
 	 
 	 var gauge = new JustGage({

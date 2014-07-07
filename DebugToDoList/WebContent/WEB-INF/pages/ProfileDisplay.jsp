@@ -14,14 +14,16 @@
 <c:import url="templates/navbar.jsp"></c:import>
 <div class="container">
       <div class="row">
-      <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+      <div id="popoverMyPerformance">
+      <div class="col-md-5  toppad  pull-left col-md-offset-3 ">
            <A href="edit.html" >Edit Profile</A>
 
         <A href="edit.html" >Logout</A>
        <br>
 <p class=" text-info">${date} </p>
       </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 toppad">
    
    
           <div class="panel panel-info">
@@ -83,9 +85,6 @@
                      
                     </tbody>
                   </table>
-                  
-                  <a href="#" class="btn btn-primary">My Performance</a>
-                  <a href="#" class="btn btn-primary">My Team Performance</a>
                 </div>
               </div>
             </div>
@@ -93,10 +92,18 @@
             
           </div>
         </div>
+        <div class="pull-right col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 toppad"></div>
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+<li class="active"><a href="#" role="tab" data-toggle="tab">My Performance</a></li>
+<li><a href="#" role="tab" data-toggle="tab">My Group Performance</a></li>
+</ul>
+        </div>
+        </div>
       </div>
-    </div>
+   
 </body>
 <c:import url="templates/javascripts.jsp"></c:import>
 
 <script type="text/javascript" src="<c:url value='/resources/javascript/profile.js' />"  ></script>
+
 </html>

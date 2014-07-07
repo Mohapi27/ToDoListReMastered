@@ -176,7 +176,7 @@ public class PerformanceDaoImpl implements PerformanceDao
 	@Transactional(readOnly = true)
 	public List<Performance> getTopFivePerformers() {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Performance.class);
-		criteria.addOrder(Order.asc("value"));
+		criteria.addOrder(Order.asc("percentageCompletedTask"));
 		criteria.setMaxResults(5);
 		criteria.setFirstResult(0);
 		return (List<Performance>)criteria.list();

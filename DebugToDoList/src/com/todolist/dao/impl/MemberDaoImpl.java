@@ -25,8 +25,8 @@ public class MemberDaoImpl implements MemberDao {
 	@Transactional(readOnly = false,propagation = Propagation.REQUIRED)
 	public Long saveMember(Member member) {
 	member.getRoles().add(roleDao.getRole(1L));
+	
 		sessionFactory.getCurrentSession().save(member);
-		
 		return member.getMemberId();
 	}
 

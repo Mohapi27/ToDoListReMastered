@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.todolist.bean.MemberBean;
@@ -56,9 +57,10 @@ public class MemberController {
 			BindingResult result) {
 		ModelAndView model = new ModelAndView();
 member.setStatus(UserStatus.ACTIVE);
-
+member.setPerformance(preparePerformance(member));
 		memberService.saveMember(member);
-		model.setViewName("redirect:/index.html");
+		model.addObject("member", member);
+		model.setViewName("redirect:/login.html");
 		return model;
 	}
 
@@ -97,6 +99,53 @@ member.setStatus(UserStatus.ACTIVE);
 		}
 		model.setViewName("ProfileDisplay");
 		return model;
+	}
+	
+	@RequestMapping(value = "/showUserProfile", method = RequestMethod.GET)
+	public ModelAndView specificProfile(@RequestParam("user") String usernameMember) {
+
+		ModelAndView model = new ModelAndView();
+
+		Member member = memberService.findMemberByName(usernameMember);
+		Performance performance = performanceService.getPerformance(member.getMemberId());
+        model.addObject("date", Calendar.getInstance().getTime());
+        if (member != null) {
+			model.addObject("memberProfile", member);
+		}
+		if (performance != null) {
+			model.addObject("memberPerformance", performance);
+		}
+		if(member.getImage() != null)
+		{
+			String image;
+			try {
+				image = Base64
+						.encodeBase64String(member.getImage()
+								.getBytes(
+										1,
+										new Long(member.getImage().length())
+												.intValue()));
+				System.out.println(image);
+				model.addObject("image", image);
+			} catch (SQLException  | NullPointerException e) {
+				e.printStackTrace();
+			}
+		}
+		model.setViewName("ProfileDisplay");
+		return model;
+	}
+	
+	public Performance preparePerformance(Member member){
+		Performance performance = new Performance();
+		performance.setCompletedTasks(0);
+		performance.setGroupPerformance(0);
+		performance.setNoOfTasks(0);
+		performance.setNotCompletedTasks(0);
+		performance.setPercentageCompletedTask(0);
+		performance.setPercentageNotCompleted(0);
+		performance.setTasksToBeCompleted(0);
+		performance.setMember(member);
+		return performance;
 	}
 
 }
