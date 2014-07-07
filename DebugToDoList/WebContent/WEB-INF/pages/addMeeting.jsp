@@ -12,8 +12,7 @@
 <body>
 <c:import url="templates/navbar.jsp" />
 <form:form>
-<input type="text" id="iniDate" name="iniDate">
-
+<div class="bfh-timepicker" data-time="now" data-mode="12h" ></div>
 
 
 </form:form>
@@ -24,13 +23,9 @@
 <script type="text/javascript" src='<c:url value="/resources/javascript/jquery-ui.js"/>'></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
-	$(function() {
-	    $( "#iniDate" ).datepicker({ dateFormat: "dd-mm-yy", firstDay: 1, changeYear: true });
-	   // $( "#endDate" ).datepicker({ dateFormat: "dd-mm-yy", firstDay: 1, changeYear: true });
-	});
-	
+	console.log($("#time").val());
 });
+	
 
 </script>
 </html>

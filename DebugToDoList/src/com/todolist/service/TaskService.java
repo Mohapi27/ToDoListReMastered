@@ -10,4 +10,5 @@ public interface TaskService {
 	List<Task> taskList();
 	Long updateTask(Task task);
 	Task getTask(Long taskId);
+	List<Task> completedTasks();
 }

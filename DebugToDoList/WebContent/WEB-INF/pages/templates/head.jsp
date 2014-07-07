@@ -2,6 +2,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/bootstrap/css/bootstrap.css' />" />
+	<link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/css/bootstrap-formhelpers.css' />" />
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/bootstrap/css/jasny-bootstrap.css' />" />
 	

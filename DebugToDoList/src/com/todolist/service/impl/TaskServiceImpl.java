@@ -37,4 +37,9 @@ public class TaskServiceImpl implements TaskService {
 		
 		return taskDao.getTask(taskId);
 	}
+
+	@Override
+	public List<Task> completedTasks() {
+		return taskDao.completedTasks();
+	}
 }

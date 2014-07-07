@@ -2,7 +2,9 @@ package com.todolist.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -46,4 +48,15 @@ public class TaskDaoImpl implements TaskDao {
 		
 		return (Task) sessionFactory.getCurrentSession().get(Task.class, taskId);
 	}	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Task> completedTasks() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				Task.class);
+		criteria.add(Restrictions.like("isDone", true));
+		return (List<Task>) criteria.list();
+	}
+
 }

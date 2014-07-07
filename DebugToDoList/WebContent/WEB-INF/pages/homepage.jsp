@@ -51,6 +51,7 @@
 			</thead>
 
 			<tbody>
+			<security:authorize access="hasRole('ROLE_GUEST') or hasRole('ROLE_ADMIN')">
 			<c:forEach items="${topFive}" var="tpm">
 				<tr class="clickable_row" data-url = "showUserProfile.html?user=${tpm.member.username}">
 					<td>${tpm.member.name}</td>
@@ -61,6 +62,19 @@
 					<td>${tpm.groupPerformance}</td>
 				</tr>
 				</c:forEach>
+				</security:authorize>
+				<security:authorize access="hasRole('ROLE_PROGRAMMER') or hasRole('ROLE_LEAD_PROGRAMMER') or hasRole('ROLE_GROUP_LEADER')">
+			<c:forEach items="${topFive}" var="tpm">
+				<tr>
+					<td>${tpm.member.name}</td>
+					<td>${tpm.noOfTasks}</td>
+					<td>${tpm.completedTasks}</td>
+					<td>${tpm.tasksToBeCompleted}</td>
+					<td>${tpm.percentageCompletedTask}</td>
+					<td>${tpm.groupPerformance}</td>
+				</tr>
+				</c:forEach>
+				</security:authorize>
 			</tbody>
 
 		</table>
